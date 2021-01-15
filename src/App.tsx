@@ -7,41 +7,41 @@ import Header from "./components/Header";
 import {IState} from "./common/types";
 
 interface IProps {
-  errorMessage: string;
-  onResetToast: () => void;
+    errorMessage: string;
+    onResetToast: () => void;
 }
 
 const AppContainer: FC<IProps> = (props: IProps) => {
-  const {errorMessage, onResetToast} = props;
+    const {errorMessage, onResetToast} = props;
 
-  const [showSnackBar, setShowSnackBar] = useState<boolean>(false);
+    const [showSnackBar, setShowSnackBar] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (!showSnackBar && errorMessage) {
-      setShowSnackBar(true);
-    }
-  }, [errorMessage, showSnackBar]);
+    useEffect(() => {
+        if (!showSnackBar && errorMessage) {
+            setShowSnackBar(true);
+        }
+    }, [errorMessage, showSnackBar]);
 
-  const handleCloseToast = useCallback(() => {
-    setShowSnackBar(false);
-    onResetToast();
-  }, [onResetToast]);
+    const handleCloseToast = useCallback(() => {
+        setShowSnackBar(false);
+        onResetToast();
+    }, [onResetToast]);
 
-  return (
+    return (
         <>
-          <Header />
-          <Offers />
-          <Toast open={showSnackBar} message={errorMessage} onClose={handleCloseToast} />
+            <Header/>
+            <Offers/>
+            <Toast open={showSnackBar} message={errorMessage} onClose={handleCloseToast}/>
         </>
     );
 }
 
 const mapStateToProps = (state: IState) => ({
-  errorMessage: state.toast.message,
+    errorMessage: state.toast.message,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  onResetToast: () => dispatch(resetToastMessage()),
+    onResetToast: () => dispatch(resetToastMessage()),
 });
 
 export const App = connect(mapStateToProps, mapDispatchToProps)(AppContainer);
