@@ -7,6 +7,7 @@ import {OfferRecord} from "../records/offer";
 import Offer from "../components/Offer";
 import Loader from "../components/Loader";
 import {IState} from "../common/types";
+import {Dispatch} from "redux";
 
 interface IRedux {
     offers: OfferRecord[];
@@ -82,7 +83,7 @@ const mapStateToProps = (state: IState) => ({
     isFetching: state.offers.isFetching,
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
     onFetchOffers: () => dispatch(fetchOffers()),
 });
 

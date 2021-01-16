@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import Toast from "./components/Toast";
 import Header from "./components/Header";
 import {IState} from "./common/types";
+import {Dispatch} from "redux";
 
 interface IProps {
     errorMessage: string;
@@ -40,7 +41,7 @@ const mapStateToProps = (state: IState) => ({
     errorMessage: state.toast.message,
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
     onResetToast: () => dispatch(resetToastMessage()),
 });
 
